@@ -13,7 +13,7 @@ export const Container = styled.div`
 
     .wrapper {
         width: 113.7rem;
-        margin: 4rem auto 0;
+        margin: 4rem 0 0 12.3rem;
     }
 
     .button-wrapper {
@@ -22,8 +22,8 @@ export const Container = styled.div`
     }
 
     > main {
-        max-width: 113.7rem;
-        margin: 2.4rem auto 10rem;
+        max-width: 133.7rem;
+        margin: 2.4rem 12.3rem 10rem;
         overflow-y: auto;
 
         grid-area: content;
