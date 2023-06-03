@@ -16,7 +16,7 @@ export const Container = styled.div`
         margin: 4rem 0 0 12.3rem;
     }
 
-    .button-wrapper {
+    .return-wrapper {
         grid-area: wrapper;
         width: 10rem;
     }
