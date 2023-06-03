@@ -21,6 +21,12 @@ export const Container = styled.div`
         background-color: ${({theme}) => theme.COLORS.BACKGROUND_300};
         border: none;
 
+        font-size:  1.6rem;
+        font-weight: 400;
+        line-height: 1.8rem;
+
+        color: ${({theme}) => theme.COLORS.WHITE_100};
+
         &::placeholder {
             color: ${({theme}) => theme.COLORS.GRAY_300};
         }
