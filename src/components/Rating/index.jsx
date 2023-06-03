@@ -12,7 +12,7 @@ export function Rating({rating, isAtHome})
 
     for(let i = 0; i < 5; i++)
     {
-        const star = i < rating ? <AiFillStar /> : <AiOutlineStar />;
+        const star = i < rating ? <AiFillStar key={i}/> : <AiOutlineStar key={i}/>;
         stars.push(star);
     }
 
