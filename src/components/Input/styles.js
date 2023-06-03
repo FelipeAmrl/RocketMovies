@@ -15,6 +15,7 @@ export const Container = styled.div`
 
     > svg {
         background: none;
+        color: ${({theme}) => theme.COLORS.GRAY_300};
     }
     
     > input {
