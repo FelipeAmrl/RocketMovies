@@ -15,7 +15,7 @@ export const Container = styled.header`
     border-bottom:
         1px solid ${({theme}) => theme.COLORS.GRAY_700};
 
-    > h2 {
+    > span {
         font-size: 2.4rem;
         font-weight: 700;
         line-height: 3.2rem;

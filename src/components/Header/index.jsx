@@ -8,9 +8,9 @@ export function Header()
 {
     return (
         <Container>
-            <h2>
+            <span>
                 RocketMovies
-            </h2>
+            </span>
             
             <Input type="text" placeholder="Search by title" icon={FiSearch}/>
             
