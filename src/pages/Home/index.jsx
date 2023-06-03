@@ -18,9 +18,7 @@ export function Home(){
 
             <div className="wrapper">
                 <h1>My movies</h1>
-                <div className="button-wrapper">
-                    <Button title="Add movie" icon={FiPlus} isAtHome/>
-                </div>
+                <Button title="Add movie" icon={FiPlus} isAtHome/>
             </div>
 
             <main>
