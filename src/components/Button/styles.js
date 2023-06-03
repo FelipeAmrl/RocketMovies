@@ -12,8 +12,8 @@ export const Container = styled.button`
     border: none;
     border-radius: 10px;
 
-    background-color: ${({theme}) => theme.COLORS.PINK};
-    color: ${({theme}) => theme.COLORS.BACKGROUND_500};
+    background-color: ${({theme, isDelete}) => isDelete ? theme.COLORS.BACKGROUND_800 : theme.COLORS.PINK};
+    color: ${({theme, isDelete}) => isDelete ? theme.COLORS.PINK : theme.COLORS.BACKGROUND_500};
 
     > svg {
         color: ${({theme}) => theme.COLORS.BACKGROUND_500};
