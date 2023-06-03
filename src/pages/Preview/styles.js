@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     width: 100%;
-    height:100vh;
+    height: 100vh;
 
     display: grid;
     grid-template-rows: 11.6rem 6.1rem auto;
@@ -12,7 +12,6 @@ export const Container = styled.div`
     "content";
 
     .wrapper {
-        width: 113.7rem;
         margin: 4rem 0 0 12.3rem;
     }
 
@@ -22,7 +21,6 @@ export const Container = styled.div`
     }
 
     > main {
-        max-width: 133.7rem;
         margin: 2.4rem 12.3rem 10rem;
         overflow-y: auto;
 

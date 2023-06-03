@@ -1,11 +1,11 @@
 import { Container } from "./styles";
 
-import { AddTag } from '../../components/AddTag';
-import { Header } from '../../components/Header';
-import { ReturnButton } from '../../components/ReturnButton';
-import { TextArea } from '../../components/TextArea';
 import { Input } from '../../components/Input';
+import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
+import { AddTag } from '../../components/AddTag';
+import { TextArea } from '../../components/TextArea';
+import { ReturnButton } from '../../components/ReturnButton';
 
 export function NewMovie()
 {

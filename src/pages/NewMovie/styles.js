@@ -12,7 +12,6 @@ export const Container = styled.div`
     "content";
 
     .wrapper {
-        width: 113.7rem;
         margin: 4rem 0 0 12.3rem;
     }
 
@@ -22,9 +21,7 @@ export const Container = styled.div`
     }
 
     > main {
-        max-width: 133.7rem;
         margin: 2.4rem 12.3rem 10rem;
-        padding-right: .5rem;
         overflow-y: auto;
 
         grid-area: content;
@@ -81,13 +78,13 @@ export const Container = styled.div`
         }
 
         &::-webkit-scrollbar {
-            width: 1.2rem;
+            width: 2.4rem;
         }
 
         &::-webkit-scrollbar-thumb {
             background-color: ${({theme}) => theme.COLORS.PINK};
             border-radius: 999px;
-            border: 2px solid ${({theme}) => theme.COLORS.BACKGROUND_500};
+            border: 8px solid ${({theme}) => theme.COLORS.BACKGROUND_500};
         }
     }
 
