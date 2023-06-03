@@ -13,11 +13,11 @@ export function NewMovie()
         <Container>
             <Header />
 
-            <div className="wrapper">
-                <div className='return-wrapper'>
-                    <ReturnButton title='Return' href="/"/>
-                </div>
+            
+            <div className='return-wrapper'>
+                <ReturnButton title='Return' href="/"/>
             </div>
+            
 
             <main>
                 <h1>New movie</h1>

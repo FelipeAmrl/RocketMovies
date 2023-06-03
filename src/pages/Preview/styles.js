@@ -11,13 +11,10 @@ export const Container = styled.div`
     "wrapper"
     "content";
 
-    .wrapper {
-        margin: 4rem 0 0 12.3rem;
-    }
-
     .return-wrapper {
         grid-area: wrapper;
-        width: 10rem;
+        display: flex;
+        margin: 4rem 0 0 12.3rem;
     }
 
     > main {
