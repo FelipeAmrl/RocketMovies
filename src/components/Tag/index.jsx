@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
 import { Container } from "./styles";
 
-export function Tag({title, isAtHome})
+export function Tag({name, isAtHome, ...rest})
 {
     return (
-        <Container isAtHome={isAtHome}>
-            {title}
+        <Container 
+            isAtHome={isAtHome}
+            {...rest}    
+        >
+            {name}
         </Container>
     );
 }
