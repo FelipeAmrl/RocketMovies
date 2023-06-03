@@ -13,4 +13,6 @@ export const Container = styled.div`
     font-weight: 400;
     line-height: 1.4rem;
     text-align: center;
+
+    color: ${({theme}) => theme.COLORS.WHITE_200};
 `
