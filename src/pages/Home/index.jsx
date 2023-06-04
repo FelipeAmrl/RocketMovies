@@ -6,6 +6,8 @@ import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
 import { MovieNote } from '../../components/MovieNote';
 
+import { Link } from 'react-router-dom';
+
 export function Home(){
 
     const content = `
@@ -18,48 +20,56 @@ export function Home(){
 
             <div className="wrapper">
                 <h1>My movies</h1>
-                <Button title="Add movie" icon={FiPlus} isAtHome/>
+                <Link to="/new">
+                    <Button title="Add movie" icon={FiPlus} isAtHome/>
+                </Link>
             </div>
 
             <main>
-                <MovieNote 
-                    data={{
-                        title:"Interstellar",
-                        content,
-                        rating: "4",
-                        tags:[
-                            {id: 1, name: 'Sci-fi'},
-                            {id: 2, name: 'Drama'},
-                            {id: 3, name: 'Family'},
-                        ]
-                    }}
-                />
+                <Link to="/preview/1">
+                    <MovieNote 
+                        data={{
+                            title:"Interstellar",
+                            content,
+                            rating: "4",
+                            tags:[
+                                {id: 1, name: 'Sci-fi'},
+                                {id: 2, name: 'Drama'},
+                                {id: 3, name: 'Family'},
+                            ]
+                        }}
+                    />
+                </Link>
 
-                <MovieNote 
-                    data={{
-                        title:"Interstellar",
-                        content,
-                        rating: "4",
-                        tags:[
-                            {id: 1, name: 'Sci-fi'},
-                            {id: 2, name: 'Drama'},
-                            {id: 3, name: 'Family'},
-                        ]
-                    }}
-                />
+                <Link to="/preview/1">
+                    <MovieNote 
+                        data={{
+                            title:"Interstellar",
+                            content,
+                            rating: "4",
+                            tags:[
+                                {id: 1, name: 'Sci-fi'},
+                                {id: 2, name: 'Drama'},
+                                {id: 3, name: 'Family'},
+                            ]
+                        }}
+                    />
+                </Link>
 
-                <MovieNote 
-                    data={{
-                        title:"Interstellar",
-                        content,
-                        rating: "4",
-                        tags:[
-                            {id: 1, name: 'Sci-fi'},
-                            {id: 2, name: 'Drama'},
-                            {id: 3, name: 'Family'},
-                        ]
-                    }}
-                />
+                <Link to="/preview/1">
+                    <MovieNote 
+                        data={{
+                            title:"Interstellar",
+                            content,
+                            rating: "4",
+                            tags:[
+                                {id: 1, name: 'Sci-fi'},
+                                {id: 2, name: 'Drama'},
+                                {id: 3, name: 'Family'},
+                            ]
+                        }}
+                    />
+                </Link>
             </main>
         </Container>
     );

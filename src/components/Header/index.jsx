@@ -4,22 +4,28 @@ import { FiSearch } from 'react-icons/fi'
 
 import { Input } from '../Input';
 
+import { Link } from 'react-router-dom';
+
 export function Header()
 {
     return (
         <Container>
-            <span>
+            <Link id="logo" to="/">
                 RocketMovies
-            </span>
+            </Link>
             
             <Input type="text" placeholder="Search by title" icon={FiSearch}/>
             
             <Profile>
                 <div>
-                    <strong>Felipe Amaral</strong>
+                    <Link to="/profile">
+                        <strong>Felipe Amaral</strong>
+                    </Link>
                     <button type='button'>logout</button>
                 </div>
-                <img src="https://github.com/FelipeAmrl.png" alt="User's photo" />
+                <Link to="/profile">
+                    <img src="https://github.com/FelipeAmrl.png" alt="User's photo" />
+                </Link>
             </Profile>
         </Container>
     );

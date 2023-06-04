@@ -15,7 +15,7 @@ export function NewMovie()
 
             
             <div className='return-wrapper'>
-                <ReturnButton title='Return' href="/"/>
+                <ReturnButton title='Return' to="/"/>
             </div>
             
 

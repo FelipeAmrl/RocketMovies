@@ -25,7 +25,7 @@ export function SignUp()
 
                 <Button title="Register"/>
 
-                <ReturnButton title="Back to login" href="/register" />
+                <ReturnButton title="Back to login" to="/" />
             </Form>
         </Container>
     );

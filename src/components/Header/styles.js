@@ -15,7 +15,7 @@ export const Container = styled.header`
     border-bottom:
         1px solid ${({theme}) => theme.COLORS.GRAY_700};
 
-    > span {
+    > #logo {
         font-size: 2.4rem;
         font-weight: 700;
         line-height: 3.2rem;
@@ -36,6 +36,7 @@ export const Profile = styled.div`
             font-size: 1.4rem;
             line-height: 1.8rem;
             white-space: nowrap;
+            color: ${({theme}) => theme.COLORS.WHITE_100};
         }
 
         button {
@@ -51,13 +52,15 @@ export const Profile = styled.div`
         }
     }
 
-    > img {
-        width: 6.4rem;
-        height: 6.4rem;
-        margin-left: .9rem;
+    > a {
+        img {
+            width: 6.4rem;
+            height: 6.4rem;
+            margin-left: .9rem;
 
-        border:
-            1px solid ${({theme}) => theme.COLORS.GRAY_700};
-        border-radius: 50%;
+            border:
+                1px solid ${({theme}) => theme.COLORS.GRAY_700};
+            border-radius: 50%;
+        }
     }
 `

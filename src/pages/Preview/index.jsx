@@ -16,7 +16,7 @@ export function Preview()
             <Header />
 
             <div className="return-wrapper">
-                    <ReturnButton title='Return' href="/"/>
+                    <ReturnButton title='Return' to="/"/>
             </div>
 
             <main>    

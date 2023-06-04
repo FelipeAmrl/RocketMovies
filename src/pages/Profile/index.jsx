@@ -11,7 +11,7 @@ export function Profile()
     return (
         <Container>
             <header>
-                <ReturnButton title="Return" href="/"/>
+                <ReturnButton title="Return" to="/"/>
             </header>
             <main>
                 <Form>
