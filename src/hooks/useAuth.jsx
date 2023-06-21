@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
 import { api } from "../services/api";
 
@@ -16,6 +16,9 @@ function AuthProvider({children})
             const response = await api.post("/sessions", { email, password });
             const { user, token } = response.data;
 
+            localStorage.setItem('@rocketmovies:user', JSON.stringify(user));
+            localStorage.setItem('@rocketmovies:token', token);
+
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
             setData({ user, token });
@@ -28,6 +31,20 @@ function AuthProvider({children})
                 alert('Unable to login!');
         }
     }
+
+    useEffect(() => {
+        const user = localStorage.getItem('@rocketmovies:user');
+        const token = localStorage.getItem('@rocketmovies:token');
+
+        if(user && token)
+        {
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            setData({
+                token,
+                user: JSON.parse(user)
+            });
+        }
+    }, []);
 
     return (
         <AuthContext.Provider 
