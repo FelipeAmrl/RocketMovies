@@ -42,12 +42,11 @@ export const Form = styled.form`
         margin-bottom: .8rem;
     }
 
-    > button {
+    > #register {
         margin: 2.4rem 0 4.2rem;
     }
 
-    > a {
-        text-decoration: none;
+    > #return {
         color: ${({theme}) => theme.COLORS.PINK};
         
         font-size: 1.6rem;
