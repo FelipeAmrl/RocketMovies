@@ -8,11 +8,19 @@ import { ReturnButton } from '../../components/ReturnButton';
 import { Container } from "./styles";
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { api } from '../../services/api';
 
 export function NewMovie()
 {
     const [tags, setTags] = useState([]);
     const [newTag, setNewTag] = useState("");
+    const [title, setTitle] = useState("");
+    const [rating, setRating] = useState("");
+    const [comments, setComments] = useState("");
+
+    const navigate = useNavigate();
 
     function handleAddTag()
     {
@@ -25,16 +33,34 @@ export function NewMovie()
         setTags(prevState => prevState.filter(tag => tag !== tagToRemove));
     }
 
+    function handleNewMovieNote()
+    {
+        api.post("/movie_notes", {
+            title,
+            description: comments, 
+            rating, 
+            tags 
+        })
+        .then(() => {
+            alert("Successfully created movie!");
+            navigate("/");
+        })
+        .catch((error) => {
+            if(error.response)
+                alert(error.response.data.message);
+            else
+                alert("Unable to create the movie note!");
+        })
+    }
+
     return (
         <Container>
             <Header />
 
-            
             <div className='return-wrapper'>
                 <ReturnButton title='Return' to="/"/>
             </div>
             
-
             <main>
                 <h1>New movie</h1>
 
@@ -42,16 +68,21 @@ export function NewMovie()
                     <Input
                         type="text" 
                         placeholder="Title"
-                        className="roboto" 
+                        className="roboto"
+                        onChange={e => setTitle(e.target.value)} 
                     />
                     <Input
                         type="number" 
                         placeholder="Rating (from 0 to 5)"
-                        className="roboto" 
+                        className="roboto"
+                        onChange={e => setRating(e.target.value)} 
                     /> 
                 </div>
 
-                <TextArea placeholder="Comments"/>
+                <TextArea 
+                    placeholder="Comments"
+                    onChange={e => setComments(e.target.value)} 
+                />
 
                 <footer>
                     <h2>Tags</h2>
@@ -77,7 +108,10 @@ export function NewMovie()
 
                     <div className="button-wrapper">
                         <Button title="Delete movie" isDelete/>
-                        <Button title="Save changes"/>
+                        <Button 
+                            title="Save changes"
+                            onClick={handleNewMovieNote}
+                        />
                     </div>
                 </footer>
             </main>
