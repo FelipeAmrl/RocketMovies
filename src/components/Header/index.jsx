@@ -1,13 +1,24 @@
+import { Input } from '../Input';
+
 import { Container, Profile } from './styles';
 
 import { FiSearch } from 'react-icons/fi'
+import { Link, useNavigate } from 'react-router-dom';
 
-import { Input } from '../Input';
-
-import { Link } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 
 export function Header()
 {
+    const { signOut } = useAuth();
+
+    const navigate = useNavigate();
+
+    function handleLogout()
+    {
+        signOut();
+        navigate("/");
+    }
+
     return (
         <Container>
             <Link id="logo" to="/">
@@ -21,7 +32,12 @@ export function Header()
                     <Link to="/profile">
                         <strong>Felipe Amaral</strong>
                     </Link>
-                    <button type='button'>logout</button>
+                    <button 
+                        type='button'
+                        onClick={handleLogout}
+                    >
+                        logout
+                    </button>
                 </div>
                 <Link to="/profile">
                     <img src="https://github.com/FelipeAmrl.png" alt="User's photo" />
