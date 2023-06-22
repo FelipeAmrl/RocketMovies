@@ -53,6 +53,8 @@ export const Container = styled.div`
                 width: 100%;
                 padding: 1.6rem;
                 border-radius: 8px;
+
+                overflow: auto;
                 
                 display: flex;
                 gap: 2.4rem;
@@ -60,6 +62,17 @@ export const Container = styled.div`
                 margin: 2.4rem 0 4rem;
 
                 background-color: ${({theme}) => theme.COLORS.BACKGROUND_800};
+
+                &::-webkit-scrollbar {
+                    width: 2.4rem;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: ${({theme}) => theme.COLORS.PINK};
+                    border-radius: 999px;
+                    border: 4px solid ${({theme}) => theme.COLORS.BACKGROUND_800};
+                }
+   
             }
 
             .button-wrapper {
@@ -84,6 +97,4 @@ export const Container = styled.div`
             border: 8px solid ${({theme}) => theme.COLORS.BACKGROUND_500};
         }
     }
-
-    
 `
