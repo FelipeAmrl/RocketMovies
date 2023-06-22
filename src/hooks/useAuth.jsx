@@ -39,6 +39,44 @@ function AuthProvider({children})
         setData({});
     }
 
+    async function updateProfile({ user, avatarFile })
+    {
+        try
+        {
+            if(avatarFile)
+            {
+                const fileUploadForm = new FormData();
+
+                fileUploadForm.append("avatar", avatarFile);
+
+                const response = await api.patch("/users/avatar", fileUploadForm);
+
+                user.avatar = response.data.avatar;
+            }
+
+            await api.put("/users", user);
+
+            user.password = "";
+            user.old_password = "";
+
+            localStorage.setItem('@rocketmovies:user', JSON.stringify(user));
+
+            setData({
+                user,
+                token: data.token
+            });
+
+            alert('Updated profile!');
+        }
+        catch(error)
+        {
+            if(error.response)
+                alert(error.response.data.message);
+            else
+                alert('Unable to update the profile!');
+        }
+    }
+
     useEffect(() => {
         const user = localStorage.getItem('@rocketmovies:user');
         const token = localStorage.getItem('@rocketmovies:token');
@@ -55,7 +93,7 @@ function AuthProvider({children})
 
     return (
         <AuthContext.Provider 
-            value={{ signIn, signOut, user: data.user}}
+            value={{ signIn, signOut, updateProfile, user: data.user}}
         >
             {children}
         </AuthContext.Provider>
