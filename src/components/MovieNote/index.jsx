@@ -6,7 +6,7 @@ import { Rating } from '../../components/Rating';
 
 export function MovieNote({data, ...rest}){
     
-    const { title, rating, content, tags } = data;
+    const { title, rating, description, tags } = data;
 
     return (
         <Container
@@ -14,7 +14,7 @@ export function MovieNote({data, ...rest}){
         >
             <h2>{title}</h2>
             {rating && <Rating rating={rating} isAtHome />}
-            <p>{content}</p>
+            <p>{description}</p>
             {tags && 
                 <footer>
                     {tags.map(tag => <Tag key={tag.id} name={tag.name} isAtHome />)}

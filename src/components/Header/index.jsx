@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Input } from '../Input';
 
 import { Container, Profile } from './styles';
@@ -11,7 +12,7 @@ import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
 
 import { api } from '../../services/api';
 
-export function Header()
+export function Header({ onChange })
 {
     const { signOut, user } = useAuth();
 
@@ -31,7 +32,12 @@ export function Header()
                 RocketMovies
             </Link>
             
-            <Input type="text" placeholder="Search by title" icon={FiSearch}/>
+            <Input 
+                type="text" 
+                placeholder="Search by title" 
+                icon={FiSearch}
+                onChange={onChange}
+            />
             
             <Profile>
                 <div>
