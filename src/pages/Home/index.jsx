@@ -16,6 +16,11 @@ export function Home(){
 
     const navigate = useNavigate();
 
+    function handleDetails(id)
+    {
+        navigate(`/preview/${id}`);
+    }
+
     useEffect(() => {
         api.get(`/movie_notes?title=${search}`)
             .then(response => {
@@ -48,6 +53,7 @@ export function Home(){
                         <MovieNote
                             key={String(movieNote.id)} 
                             data={movieNote}
+                            onClick={() => handleDetails(movieNote.id)}
                         />
                     ))
                 }
