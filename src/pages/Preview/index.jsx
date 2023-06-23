@@ -13,7 +13,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { api } from '../../services/api';
 
-import { format, parseISO } from 'date-fns';
+import { format, parseISO, add } from 'date-fns';
 
 export function Preview()
 {
@@ -31,7 +31,9 @@ export function Preview()
 
     function handleDate(createdAt)
     {
-        const formattedDate = format(parseISO(createdAt), "MMM dd, yyyy 'at' hh:mm aaa");
+        const parsedDate = parseISO(createdAt);
+        const zonedDate = add(parsedDate, { hours: -3 } )
+        const formattedDate = format(zonedDate, "MMM dd, yyyy 'at' hh:mm aaa");
         setCreatedAt(formattedDate);
     }
 
