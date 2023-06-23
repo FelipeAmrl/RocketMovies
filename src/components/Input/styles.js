@@ -19,6 +19,8 @@ export const Container = styled.div`
     }
     
     > input {
+        width: 100%;
+
         background-color: ${({theme}) => theme.COLORS.BACKGROUND_300};
         border: none;
 
