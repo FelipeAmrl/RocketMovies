@@ -2,7 +2,6 @@
 import { Tag } from '../../components/Tag';
 import { Header } from '../../components/Header';
 import { Rating } from '../../components/Rating';
-import { Button } from '../../components/Button';
 import { Description } from '../../components/Description';
 import { ReturnButton } from '../../components/ReturnButton';
 
@@ -36,6 +35,16 @@ export function Preview()
         setCreatedAt(formattedDate);
     }
 
+    async function handleDelete()
+    {
+        const confirm = window.confirm('Do you really want to delete this movie?');
+        if(confirm)
+        {
+            await api.delete(`/movie_notes/${params.id}`);
+            navigate("/");
+        }
+    }
+
     useEffect(() => {
         api.get(`/movie_notes/${params.id}`)
             .then(response => {
@@ -55,11 +64,18 @@ export function Preview()
         <Container>
             <Header />
 
-            <div className="return-wrapper">
+            <div className="button-wrapper">
                     <ReturnButton 
                         title='Return'
                         onClick={handleReturn}
                     />
+
+                    <button
+                        type="button"
+                        onClick={handleDelete}
+                    >
+                        Delete movie
+                    </button>
             </div>
 
             {   data &&

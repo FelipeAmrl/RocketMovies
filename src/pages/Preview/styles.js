@@ -11,10 +11,23 @@ export const Container = styled.div`
     "wrapper"
     "content";
 
-    .return-wrapper {
+    .button-wrapper {
         grid-area: wrapper;
         display: flex;
-        margin: 4rem 0 0 12.3rem;
+        justify-content: space-between;
+        margin: 4rem 12.3rem 0;
+
+        > button:nth-child(2)
+        {
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 2.1rem;
+
+            color: ${({theme}) => theme.COLORS.PINK};
+
+            background: none;
+            border: none;
+        }
     }
 
     > main {
