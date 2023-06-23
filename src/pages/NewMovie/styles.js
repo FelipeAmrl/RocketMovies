@@ -74,13 +74,6 @@ export const Container = styled.div`
                 }
    
             }
-
-            .button-wrapper {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 4rem;
-            }
         }
 
         .roboto {

@@ -65,12 +65,20 @@ export function NewMovie()
         })
     }
 
+    function handleReturn()
+    {
+        navigate(-1);
+    }
+
     return (
         <Container>
             <Header />
 
             <div className='return-wrapper'>
-                <ReturnButton title='Return' to="/"/>
+                <ReturnButton 
+                    title='Return' 
+                    onClick={handleReturn}
+                />
             </div>
             
             <main>
@@ -117,14 +125,12 @@ export function NewMovie()
                             onClick={handleAddTag}
                         />
                     </div>
-
-                    <div className="button-wrapper">
-                        <Button title="Delete movie" isDelete/>
-                        <Button 
-                            title="Save changes"
-                            onClick={handleNewMovieNote}
-                        />
-                    </div>
+ 
+                    <Button 
+                        title="Create movie note"
+                        onClick={handleNewMovieNote}
+                    />
+                    
                 </footer>
             </main>
         </Container>
