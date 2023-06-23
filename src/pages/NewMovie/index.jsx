@@ -35,6 +35,18 @@ export function NewMovie()
 
     function handleNewMovieNote()
     {
+        if(!title)
+            return alert("Enter the movie title!");
+        
+        if(!rating)
+            return alert("Enter the movie rating!");
+
+        if(rating < 0 || rating > 5)
+            return alert("The movie rating must be a number between 0 and 5!");
+
+        if(tags.length === 0)
+            return alert("Enter a tag for the movie!");
+
         api.post("/movie_notes", {
             title,
             description: comments, 
