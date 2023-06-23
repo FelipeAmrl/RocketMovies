@@ -14,6 +14,15 @@ export const Container = styled.div`
 
     border-radius: 16px;
 
+    cursor: pointer;
+
+    transition: transform 0.2s;
+
+    &:hover
+    {
+        transform: scale(0.99);         
+    }
+
     h2 {
         font-size:2.4rem;
         font-weight: 700;
