@@ -2,6 +2,7 @@
 import { Tag } from '../../components/Tag';
 import { Header } from '../../components/Header';
 import { Rating } from '../../components/Rating';
+import { Button } from '../../components/Button';
 import { Description } from '../../components/Description';
 import { ReturnButton } from '../../components/ReturnButton';
 
@@ -13,9 +14,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { api } from '../../services/api';
 
+import { format, parseISO } from 'date-fns';
+
 export function Preview()
 {
     const [data, setData] = useState(null);
+    const [createdAt, setCreatedAt] = useState("");
     
     const navigate = useNavigate();
 
@@ -26,15 +30,23 @@ export function Preview()
         navigate(-1);
     }
 
+    function handleDate(createdAt)
+    {
+        const formattedDate = format(parseISO(createdAt), "MMM dd, yyyy 'at' hh:mm aaa");
+        setCreatedAt(formattedDate);
+    }
+
     useEffect(() => {
         api.get(`/movie_notes/${params.id}`)
             .then(response => {
                 setData(response.data);
+                handleDate(response.data.created_at);
             })
             .catch(error => {
                 if(error.response)
                     alert(error.response.data.message);
                 else
+                    console.log(error);
                     alert("Unable to show movie details!");
             })
     }, []);
@@ -61,7 +73,7 @@ export function Preview()
 
                     <div className='date'>
                         <FiClock size={20} />
-                        <span>{data.created_at}</span>
+                        <span>{createdAt}</span>
                     </div>
 
                     { data.tags &&
