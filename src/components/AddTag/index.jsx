@@ -3,7 +3,7 @@ import { Container } from "./styles";
 
 import { FiX, FiPlus } from 'react-icons/fi';
 
-export function AddTag({value, onClick, isNew, ...rest})
+export function AddTag({value, onClick, isLoading = false, isNew, ...rest})
 {
     return (
         <Container  isNew={isNew}>
@@ -12,6 +12,7 @@ export function AddTag({value, onClick, isNew, ...rest})
                 readOnly={!isNew}
                 value={value}
                 maxLength={17}
+                disabled={isLoading}
                 {...rest}
             >
             </input>
@@ -19,6 +20,7 @@ export function AddTag({value, onClick, isNew, ...rest})
             <button
                 type="button"
                 onClick={onClick}
+                disabled={isLoading}
             >
                 {isNew ? <FiPlus /> : <FiX />}
             </button>

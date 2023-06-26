@@ -12,7 +12,7 @@ import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
 
 import { api } from '../../services/api';
 
-export function Header({ onChange })
+export function Header({ onChange, isLoading = false })
 {
     const { signOut, user } = useAuth();
 
@@ -28,36 +28,39 @@ export function Header({ onChange })
 
     return (
         <Container>
-            <Link id="logo" to="/">
+            <h2 id="logo">
                 RocketMovies
-            </Link>
+            </h2>
             
             <Input 
                 type="text" 
-                placeholder="Search by title" 
+                placeholder={isLoading ? "Loading..." : "Search by title"}
                 icon={FiSearch}
                 onChange={onChange}
+                disabled={isLoading}
             />
             
-            <Profile>
-                <div>
+            { isLoading === false &&
+                <Profile>
+                    <div>
+                        <Link to="/profile">
+                            <strong>{user.name}</strong>
+                        </Link>
+                        <button 
+                            type='button'
+                            onClick={handleLogout}
+                        >
+                            logout
+                        </button>
+                    </div>
                     <Link to="/profile">
-                        <strong>{user.name}</strong>
+                        <img 
+                            src={avatarURL} 
+                            alt={`${user.name} user's photo`} 
+                        />
                     </Link>
-                    <button 
-                        type='button'
-                        onClick={handleLogout}
-                    >
-                        logout
-                    </button>
-                </div>
-                <Link to="/profile">
-                    <img 
-                        src={avatarURL} 
-                        alt={`${user.name} user's photo`} 
-                    />
-                </Link>
-            </Profile>
+                </Profile>
+            }
         </Container>
     );
 }

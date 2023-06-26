@@ -27,6 +27,11 @@ export const Container = styled.div`
 
             background: none;
             border: none;
+
+            &:disabled 
+            {
+                opacity: 0.5; 
+            }
         }
     }
 

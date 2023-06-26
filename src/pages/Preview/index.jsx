@@ -19,6 +19,8 @@ export function Preview()
 {
     const [data, setData] = useState(null);
     const [createdAt, setCreatedAt] = useState("");
+    const [loading, setLoading] = useState(true);
+
     
     const navigate = useNavigate();
 
@@ -42,7 +44,9 @@ export function Preview()
         const confirm = window.confirm('Do you really want to delete this movie?');
         if(confirm)
         {
+            setLoading(true);
             await api.delete(`/movie_notes/${params.id}`);
+            setLoading(false);
             navigate("/");
         }
     }
@@ -52,6 +56,7 @@ export function Preview()
             .then(response => {
                 setData(response.data);
                 handleDate(response.data.created_at);
+                setLoading(false);
             })
             .catch(error => {
                 if(error.response)
@@ -64,17 +69,21 @@ export function Preview()
 
     return (
         <Container>
-            <Header />
+            <Header 
+                isLoading={loading}
+            />
 
             <div className="button-wrapper">
                     <ReturnButton 
                         title='Return'
                         onClick={handleReturn}
+                        isLoading={loading}
                     />
 
                     <button
                         type="button"
                         onClick={handleDelete}
+                        disabled={loading}
                     >
                         Delete movie
                     </button>

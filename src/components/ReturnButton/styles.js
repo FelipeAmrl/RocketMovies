@@ -17,4 +17,9 @@ export const Container = styled.button`
     > svg {
         font-size: 2rem;
     }
+
+    &:disabled 
+    {
+       opacity: 0.5; 
+    }
 `

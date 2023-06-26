@@ -5,7 +5,7 @@ import { MovieNote } from '../../components/MovieNote';
 import { Container } from "./styles";
 
 import { FiPlus } from "react-icons/fi";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { api } from '../../services/api';
@@ -13,6 +13,7 @@ import { api } from '../../services/api';
 export function Home(){
     const [search, setSearch] = useState("");
     const [movieNotes, setMovieNotes] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const navigate = useNavigate();
 
@@ -25,6 +26,7 @@ export function Home(){
         api.get(`/movie_notes?title=${search}`)
             .then(response => {
                 setMovieNotes(response.data);
+                setLoading(false);
             })
             .catch(error => {
                 if(error.response)
@@ -38,16 +40,23 @@ export function Home(){
         <Container>
             <Header 
                 onChange={e => setSearch(e.target.value)}
+                isLoading={loading}
             />
 
             <div className="wrapper">
                 <h1>My movies</h1>
-                <Link to="/new">
-                    <Button title="Add movie" icon={FiPlus} isAtHome/>
-                </Link>
+                
+                <Button 
+                    title="Add movie" 
+                    icon={FiPlus} 
+                    isAtHome 
+                    isLoading={loading}
+                    onClick={() => navigate("/new")}
+                />
             </div>
 
-            <main>
+            {   movieNotes &&
+                <main>
                 {
                     movieNotes.map(movieNote => (
                         <MovieNote
@@ -57,7 +66,8 @@ export function Home(){
                         />
                     ))
                 }
-            </main>
+                </main>
+            }
         </Container>
     );
 }

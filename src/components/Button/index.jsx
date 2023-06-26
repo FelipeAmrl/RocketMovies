@@ -1,19 +1,19 @@
 /* eslint-disable react/prop-types */
 import { Container } from './styles';
 
-export function Button({title, icon: Icon, isAtHome = false, onClick, isDelete, loading = false, ...rest})
+export function Button({title, icon: Icon, isAtHome = false, onClick, isDelete, isLoading = false, ...rest})
 {
     return(
         <Container
             type="button"
-            disabled={loading}
+            disabled={isLoading}
             isAtHome={isAtHome}
             isDelete={isDelete}
             onClick={onClick}
             {...rest}
         >
-            {Icon && <Icon size={20} />}
-            {loading ? "Loading..." : title}
+            {isLoading ? "" : Icon && <Icon size={20} />}
+            {isLoading ? "Loading..." : title}
         </Container>
     );
 }

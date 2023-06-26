@@ -22,6 +22,7 @@ export function Profile()
     const [email, setEmail] = useState(user.email);
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
 
@@ -32,6 +33,8 @@ export function Profile()
     
     async function handleUpdate()
     {
+        setLoading(true);
+
         const updated = {
             name,
             email,
@@ -41,7 +44,10 @@ export function Profile()
 
         const userUpdated = Object.assign(user, updated);
 
-        updateProfile({ user:userUpdated , avatarFile });
+        updateProfile({ user:userUpdated , avatarFile })
+            .then(() => {
+                setLoading(false);
+            })
     }
 
     function handleAvatarChange(event)
@@ -66,6 +72,7 @@ export function Profile()
                 <ReturnButton 
                     title="Return" 
                     onClick={handleReturn}
+                    isLoading={loading}
                 />
             </header>
             <main>
@@ -81,6 +88,7 @@ export function Profile()
                                 id="avatar" 
                                 type="file" 
                                 onChange={handleAvatarChange}
+                                disabled={loading}
                             />
                         </label>
                     </Avatar>
@@ -90,6 +98,7 @@ export function Profile()
                             icon={FiUser}
                             value={name}
                             onChange={e => setName(e.target.value)}
+                            disabled={loading}
                         />
                         <Input 
                             type="email" 
@@ -97,24 +106,27 @@ export function Profile()
                             icon={FiMail}
                             value={email}
                             onChange={e => setEmail(e.target.value)}
+                            disabled={loading}
                         />
                         <Input 
                             type="password"
-                             
                             placeholder="Current password" 
                             icon={FiLock}
                             onChange={e => setOldPassword(e.target.value)}
+                            disabled={loading}
                         />
                         <Input 
                             type="password" 
                             placeholder="New password" 
                             icon={FiLock}
                             onChange={e => setNewPassword(e.target.value)}
+                            disabled={loading}
                         />
 
                     <Button 
                         title="Save" 
                         onClick={handleUpdate}
+                        isLoading={loading}
                     />
                 </Form>
             </main>

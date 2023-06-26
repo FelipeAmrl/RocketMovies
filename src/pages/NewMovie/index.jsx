@@ -19,6 +19,7 @@ export function NewMovie()
     const [title, setTitle] = useState("");
     const [rating, setRating] = useState("");
     const [comments, setComments] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -46,6 +47,8 @@ export function NewMovie()
 
         if(tags.length === 0)
             return alert("Enter a tag for the movie!");
+        
+        setLoading(true);
 
         api.post("/movie_notes", {
             title,
@@ -55,6 +58,7 @@ export function NewMovie()
         })
         .then(() => {
             alert("Successfully created movie!");
+            setLoading(false);
             navigate("/");
         })
         .catch((error) => {
@@ -72,12 +76,15 @@ export function NewMovie()
 
     return (
         <Container>
-            <Header />
+            <Header 
+                isLoading={loading}
+            />
 
             <div className='return-wrapper'>
                 <ReturnButton 
                     title='Return' 
                     onClick={handleReturn}
+                    isLoading={loading}
                 />
             </div>
             
@@ -89,19 +96,22 @@ export function NewMovie()
                         type="text" 
                         placeholder="Title"
                         className="roboto"
-                        onChange={e => setTitle(e.target.value)} 
+                        onChange={e => setTitle(e.target.value)}
+                        disabled={loading} 
                     />
                     <Input
                         type="number" 
                         placeholder="Rating (from 0 to 5)"
                         className="roboto"
-                        onChange={e => setRating(e.target.value)} 
+                        onChange={e => setRating(e.target.value)}
+                        disabled={loading} 
                     /> 
                 </div>
 
                 <TextArea 
                     placeholder="Comments"
-                    onChange={e => setComments(e.target.value)} 
+                    onChange={e => setComments(e.target.value)}
+                    disabled={loading} 
                 />
 
                 <footer>
@@ -123,12 +133,14 @@ export function NewMovie()
                             isNew
                             onChange={e => setNewTag(e.target.value)}
                             onClick={handleAddTag}
+                            isLoading={loading}
                         />
                     </div>
  
                     <Button 
                         title="Create movie note"
                         onClick={handleNewMovieNote}
+                        isLoading={loading}
                     />
                     
                 </footer>

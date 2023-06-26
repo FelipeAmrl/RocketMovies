@@ -15,6 +15,7 @@ export function SignUp()
     const [ name, setName ] = useState("");
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -26,16 +27,25 @@ export function SignUp()
             return;
         }
 
+        setLoading(true);
+
         api.post("/users", { name, email, password })
             .then(() => {
                 alert('Account successfully created!');
+                setLoading(false);
                 navigate("/");
             })
             .catch(error => {
                 if(error.response)
+                {   
                     alert(error.response.data.message);
+                    setLoading(false);
+                }
                 else
+                {   
                     alert('Unable to register!');  
+                    setLoading(false);
+                }
             })
     }
 
@@ -60,24 +70,28 @@ export function SignUp()
                     placeholder="Name" 
                     icon={FiUser}
                     onChange={e => setName(e.target.value)}
+                    disabled={loading}
                 />
                 <Input 
                     type="email" 
                     placeholder="E-mail" 
                     icon={FiMail}
                     onChange={e => setEmail(e.target.value)}
+                    disabled={loading}
                 />
                 <Input 
                     type="password" 
                     placeholder="Password" 
                     icon={FiLock}
                     onChange={e => setPassword(e.target.value)}
+                    disabled={loading}
                 />
 
                 <Button 
                     id="register" 
                     title="Register" 
                     onClick={handleSignUp}
+                    isLoading={loading}
                 />
 
                 <ReturnButton 
@@ -85,6 +99,7 @@ export function SignUp()
                     type="button"
                     title="Back to login" 
                     onClick={handleReturn}
+                    isLoading={loading}
                 />
             </Form>
         </Container>

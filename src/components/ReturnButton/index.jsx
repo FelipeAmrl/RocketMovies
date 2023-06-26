@@ -3,10 +3,13 @@ import { Container } from './styles';
 
 import { FiArrowLeft } from 'react-icons/fi';
 
-export function ReturnButton({title, ...rest})
+export function ReturnButton({title, isLoading = false, ...rest})
 {
     return (
-        <Container {...rest}>
+        <Container 
+            {...rest}
+            disabled={isLoading}
+        >
             <FiArrowLeft/>
             {title}
         </Container>

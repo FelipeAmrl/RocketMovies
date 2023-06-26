@@ -13,12 +13,17 @@ export function SignIn()
 {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const { signIn } = useAuth();
 
     function handleSignIn()
     {
-        signIn({email, password});
+        setLoading(true);
+        signIn({email, password})
+            .then(() => {
+                setLoading(false);
+            })
     }
 
     return (
@@ -35,23 +40,27 @@ export function SignIn()
                     placeholder="E-mail" 
                     icon={FiMail}
                     onChange={e => setEmail(e.target.value)}
+                    disabled={loading}
                 />
                 <Input 
                     type="password" 
                     placeholder="Password" 
                     icon={FiLock}
                     onChange={e => setPassword(e.target.value)}
-
+                    disabled={loading}
                 />
 
                 <Button 
                     title="Login"
                     onClick={handleSignIn}
+                    isLoading={loading}
                 />
 
-                <Link to="/register">
-                    Create account
-                </Link>
+                { !loading &&
+                    <Link to="/register">
+                        Create account
+                    </Link>
+                }
             </Form>
 
             <Background />

@@ -6,7 +6,7 @@ export const Container = styled.header`
     width: 100%;
     height: 11.6rem;
 
-    display: flex;
+    display: ${({ isLoading }) => isLoading ? 'none' : 'flex'};
     align-items: center;
     gap: 6.4rem;
 

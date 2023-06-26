@@ -19,4 +19,9 @@ export const Container = styled.button`
         color: ${({theme}) => theme.COLORS.BACKGROUND_500};
         background: none;
     }
+
+    &:disabled 
+    {
+       opacity: 0.5; 
+    }
 `
